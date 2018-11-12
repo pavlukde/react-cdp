@@ -4,16 +4,6 @@ import App from '../containers/App';
 
 class Login extends Component {
 
-    constructor(props) {
-        super(props);
-        this.showCourses= this.showCourses.bind(this);
-    }
-
-    showCourses = function () {
-        console.log(this.props.handleChange);
-        this.props.handleChange('courses');
-    }
-
     render() {
         return(
             <Form horizontal>

@@ -17,9 +17,6 @@ class App extends Component {
     this.state = {name:'login'};
   }
 
-  handleChange = function(value){
-    this.setState({active:value});
-  }
   
   render() {
 
@@ -27,18 +24,22 @@ class App extends Component {
 
     return (
       <div className="App">
-      <Header />
 
-      {active === 'login' ? (
-            <Login handleChange={this.handleChange}/>
-        ) : active === 'courses' ? (
-          <Courses />
-        ) : active === 'addCourse' ? (
-          <AddCourse/>
-        ) : <Login />}
+        <Header />
+        <br/>
+        <br/>
+        <Login/>
+        <br/>
+        <br/>
+        <Courses />
+        <br/>
+        <br/>
+        <AddCourse/>
+        <br/>
+        <br/>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     );
   }
 }
