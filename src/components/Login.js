@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { Form, FormControl, FormGroup, Button, Col, ControlLabel, Checkbox } from 'react-bootstrap';
+import { Form, FormControl, FormGroup, Button, Col, ControlLabel } from 'react-bootstrap';
 import App from '../containers/App';
 
 class Login extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    showCourses(){
+        this.props.setView('courses');
+    }
 
     render() {
         return(
@@ -27,7 +35,7 @@ class Login extends Component {
 
             <FormGroup>
                 <Col smOffset={2} sm={7}>
-                <Button onClick={this.showCourses}>Sign in</Button>
+                <Button onClick={this.showCourses.bind(this)}>Sign in</Button>
                 </Col>
             </FormGroup>
             </Form>

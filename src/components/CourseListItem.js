@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormControl, FormGroup, Button, Col, ControlLabel, Checkbox } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
 const CourseListItem = () => (

@@ -8,33 +8,45 @@ import Login from '../components/Login';
 import Courses from '../components/Courses';
 import AddCourse from '../components/AddCourse';
 
+function updateState(text){
+  this.setState({text})
+}
 
 class App extends Component {
 
-
   constructor(props) {
     super(props);
-    this.state = {name:'login'};
+    this.state = {
+      view: 'login'
+    };
+
+    console.log(this.state.view)
+  }
+
+  updateState(value) {
+      this.setState({ view: value });
   }
 
   
   render() {
 
-    var active = this.state.active;
+    var view = this.state.view;
 
     return (
       <div className="App">
 
-        <Header />
+        <Header/>
         <br/>
         <br/>
-        <Login/>
-        <br/>
-        <br/>
-        <Courses />
-        <br/>
-        <br/>
-        <AddCourse/>
+
+        {view === 'login' ? (
+                  <Login setView={ this.updateState.bind(this) } />
+                ) : view === 'courses' ? (
+                  <Courses setView={ this.updateState.bind(this)} />
+                ) : view === 'addCourse' ? (
+                  <AddCourse setView={ this.updateState.bind(this)} />
+                ) : null}
+
         <br/>
         <br/>
 

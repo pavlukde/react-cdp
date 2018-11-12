@@ -1,30 +1,42 @@
-import React from 'react';
-import { Form, FormControl, FormGroup, Button, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import React,{Component} from 'react';
+import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
 import CourseListItem from './CourseListItem';
 
-const Courses = () => (
+class Courses extends Component {
 
-<div>
-  <Form horizontal>
-    <FormGroup controlId="formHorizontalEmail">
-      <Col sm={6}>
-        <FormControl type="text" placeholder="Enter name part or date" />
-      </Col>
-      <Col sm={2}>
-        <Button>Find</Button>
-      </Col>
-      <Col sm={2}>
-        <Button>Add Course</Button>
-      </Col>
-    </FormGroup>
-  </Form>
+  constructor(props) {
+      super(props);
+  }
 
-  <CourseListItem/>
-  <CourseListItem/>
-  <CourseListItem/>
+  addCourse(){
+      this.props.setView('addCourse');
+  }
 
-</div>
+  render() {
+    return(
+      <div>
+        <Form horizontal>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col sm={6}>
+              <FormControl type="text" placeholder="Enter name part or date" />
+            </Col>
+            <Col sm={2}>
+              <Button>Find</Button>
+            </Col>
+            <Col sm={2}>
+              <Button onClick={this.addCourse.bind(this)}>Add Course</Button>
+            </Col>
+          </FormGroup>
+        </Form>
+
+        <CourseListItem/>
+        <CourseListItem/>
+        <CourseListItem/>
+
+      </div>
+    );
+  }
   
-);
+}
 
 export default Courses;
