@@ -1,0 +1,85 @@
+import React from 'react';
+import { Form, FormControl, FormGroup, Button, Col, ControlLabel, Checkbox } from 'react-bootstrap';
+
+const AddCourse = () => (
+
+
+<Form horizontal>
+  <FormGroup controlId="name">
+    <Col componentClass={ControlLabel} sm={4}>
+      Name
+    </Col>
+    <Col sm={4}>
+      <FormControl type="text" placeholder="Enter Course Name" />
+    </Col>
+  </FormGroup>
+
+  <FormGroup controlId="description">
+    <Col componentClass={ControlLabel} sm={4}>
+      Description
+    </Col>
+    <Col sm={4}>
+      <FormControl type="text" placeholder="Course Description" />
+    </Col>
+  </FormGroup>
+
+  <FormGroup controlId="date">
+    <Col componentClass={ControlLabel} sm={4}>
+      Date
+    </Col>
+    <Col sm={4}>
+      <FormControl type="text" placeholder="dd.mm.yyyy" />
+    </Col>
+  </FormGroup>
+
+    <FormGroup controlId="duration">
+    <Col componentClass={ControlLabel} sm={4}>
+      Duration
+    </Col>
+    <Col sm={4}>
+      <FormControl type="text" placeholder="min" />
+    </Col>
+  </FormGroup>
+
+  <FormGroup controlId="authorsList">
+    <Col componentClass={ControlLabel} sm={4}>
+      Authors list
+    </Col>
+    <Col sm={2}>
+      <FormControl componentClass="select" multiple>
+        <option value="select">Aaaaa</option>
+        <option value="other">Bbbbb</option>
+        <option value="other">Cccc</option>
+        <option value="other">Dddd</option>
+        <option value="other">Eeeee</option>
+      </FormControl>
+    </Col>
+    <Col sm={1}>
+      <Button>&gt;</Button>
+      <Button>&lt;</Button>
+    </Col>
+    <Col sm={2}>
+      <FormControl componentClass="select" multiple>
+        <option value="select">Aaaaa</option>
+        <option value="other">Bbbbb</option>
+        <option value="other">Cccc</option>
+        <option value="other">Dddd</option>
+        <option value="other">Eeeee</option>
+      </FormControl>
+    </Col>
+  </FormGroup>
+
+  <FormGroup>
+    <Col smOffset={2} sm={4}>
+      <Button>Save</Button>
+    </Col>
+    <Col smOffset={2} sm={2}>
+      <Button>Cancel</Button>
+    </Col>
+  </FormGroup>
+</Form>
+
+
+);
+
+export default AddCourse;
