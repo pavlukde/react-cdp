@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
 import CourseListItem from './CourseListItem';
 
-class Courses extends Component {
+export class Courses extends Component {
 
   constructor(props) {
       super(props);
@@ -38,5 +38,3 @@ class Courses extends Component {
   }
   
 }
-
-export default Courses;

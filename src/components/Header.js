@@ -1,11 +1,13 @@
-import React from 'react';
-import Logout from './Logout';
+import React, {Component} from 'react';
+import {Logout} from './Logout';
 
+export class Header extends Component {
 
-const Header = () => (
-  <header>
-    <Logout/>
-  </header>
-);
-
-export default Header;
+  render(){
+    return(
+      <header>
+        <Logout />   
+      </header>
+    )
+  }
+}

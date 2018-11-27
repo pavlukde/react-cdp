@@ -1,13 +1,27 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Auth } from '../services/Auth';
+import createHistory from 'history/createBrowserHistory'
 
-const Logout = () => (
 
-  <div>
-    <div>Username</div>
-    <Button>Logout</Button>
-  </div>
 
-);
+export class Logout extends Component {
 
-export default Logout;
+  signOut(){
+    Auth.signout();
+    createHistory().push("/login");
+  }
+
+  render() {
+    if(Auth.isAuthenticated){
+    return(
+      <div>       
+          <div>Hello, {Auth.userName}</div>
+          <Button onClick={this.signOut}>Sign Out</Button>       
+      </div>
+    )}
+    else return(
+      <div></div>
+    )
+  }
+}

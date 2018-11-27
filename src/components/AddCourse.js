@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, Button, Col, ControlLabel } from 'react-bootstrap';
 
+export
 class AddCourse extends Component {
 
   constructor(props) {
@@ -91,5 +92,3 @@ class AddCourse extends Component {
     )
   }
 }
-
-export default AddCourse;
