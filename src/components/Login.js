@@ -1,7 +1,6 @@
 import React,  { Component } from 'react';
 import { Form, FormControl, FormGroup, Col, ControlLabel } from 'react-bootstrap';
 import { Auth } from '../services/Auth';
-import createHistory from 'history/createBrowserHistory'
 
 export class Login extends Component {
 
@@ -25,19 +24,22 @@ export class Login extends Component {
 
     signIn(event){
         if(!Auth.authenticate(this.state.userName, this.state.password)){
-            console.log('loginAttemptFailed');
+            console.log('Login Attempt Failed');
             this.setState({
                 userName:'',
                 password:'',
                 loginAttemptFailed : true
             });
+            event.preventDefault();
+            return;
         }
         this.setState({
             userName:'',
             password:''
         });
-        createHistory().push("/courses");
+        
         event.preventDefault();
+        this.props.history.push("/courses");
       }
 
     render() {
@@ -68,7 +70,6 @@ export class Login extends Component {
                 <input type="submit" value="Sign in"/>
                 </Col>
             </FormGroup>
-            -{this.loginAttemptFailed}-
             </Form>
         );
     }

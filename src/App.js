@@ -38,16 +38,14 @@ export class App extends Component {
 
         <Router>
           <Switch>
-            <Route path="/" render={(props) => <Login /> } />
+            <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
+            <Route path="/login" component={Login} />
             <PrivateRoute path="/courses" component={Courses} />
-            <Route path="/courses/addCourse" component={AddCourse} />
+            <Route path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>
         </Router>
         <br/>
-
-        !!!{Auth.isAuthenticated}!!!
-
         <Footer />
       </div>
     );
@@ -59,7 +57,7 @@ export class App extends Component {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    Auth.isAuthenticated === true
+    Auth.isAuthenticated
       ? <Component {...props} />
       : <Redirect to='/login' />
   )} />
