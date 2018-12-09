@@ -1,15 +1,27 @@
 import React,{Component} from 'react';
 import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
-import CourseListItem from './CourseListItem';
+import { CourseListItem } from './CourseListItem';
+import { CoursesService } from '../services/CoursesService';
 
 export class Courses extends Component {
 
   constructor(props) {
       super(props);
+      this.state = {courses:[]};
   }
 
   addCourse(){
-      this.props.setView('addCourse');
+    this.props.history.push("/addCourse");
+  }
+
+  componentDidMount() {
+    const setState = this.setState.bind(this);
+    fetch('http://localhost:3001/courses')
+    .then(response => response.json())
+    .then(data => {
+        this.setState({ courses: data });
+    });
+  
   }
 
   render() {
@@ -29,9 +41,12 @@ export class Courses extends Component {
           </FormGroup>
         </Form>
 
-        <CourseListItem/>
-        <CourseListItem/>
-        <CourseListItem/>
+
+        {
+            this.state.courses.map((item, key) => {
+                return <CourseListItem course={item}/>
+            })
+        }
 
       </div>
     );

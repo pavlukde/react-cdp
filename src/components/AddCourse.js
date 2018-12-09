@@ -6,11 +6,34 @@ class AddCourse extends Component {
 
   constructor(props) {
       super(props);
+      this.state = {};
+      this.handleChange = this.handleChange.bind(this);
+      this.save = this.save.bind(this);
+      this.showCourses = this.showCourses.bind(this);
   }
 
 
   showCourses(){
-      this.props.setView('courses');
+    this.props.history.push("/courses");
+  }
+
+  save(){
+    
+    fetch('http://localhost:3001/courses/', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: {"Content-Type" : "application/json"}
+    })
+    .then(response => console.log(response.json()))
+    .catch(error => console.log(error));
+  }
+
+  handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
   }
 
   render(){
@@ -21,7 +44,8 @@ class AddCourse extends Component {
             Name
           </Col>
           <Col sm={4}>
-            <FormControl type="text" placeholder="Enter Course Name" />
+            <FormControl type="text" placeholder="Enter Course Name" 
+              name="name" value={this.state.name} onChange={this.handleChange}/>
           </Col>
         </FormGroup>
 
@@ -30,7 +54,8 @@ class AddCourse extends Component {
             Description
           </Col>
           <Col sm={4}>
-            <FormControl type="text" placeholder="Course Description" />
+            <FormControl type="text" placeholder="Course Description" 
+               name="description" value={this.state.description} onChange={this.handleChange}/>
           </Col>
         </FormGroup>
 
@@ -39,7 +64,8 @@ class AddCourse extends Component {
             Date
           </Col>
           <Col sm={4}>
-            <FormControl type="text" placeholder="dd.mm.yyyy" />
+            <FormControl type="text" placeholder="dd.mm.yyyy" 
+               name="date" value={this.state.date} onChange={this.handleChange}/>
           </Col>
         </FormGroup>
 
@@ -48,7 +74,8 @@ class AddCourse extends Component {
             Duration
           </Col>
           <Col sm={4}>
-            <FormControl type="text" placeholder="min" />
+            <FormControl type="text" placeholder="min" 
+               name="duration" value={this.state.duration} onChange={this.handleChange}/>
           </Col>
         </FormGroup>
 
@@ -82,10 +109,10 @@ class AddCourse extends Component {
 
         <FormGroup>
           <Col smOffset={2} sm={4}>
-            <Button onClick={this.showCourses.bind(this)}>Save</Button>
+            <Button onClick={this.save}>Save</Button>
           </Col>
           <Col smOffset={2} sm={2}>
-            <Button>Cancel</Button>
+            <Button onClick={this.showCourses}>Cancel</Button>
           </Col>
         </FormGroup>
       </Form>
