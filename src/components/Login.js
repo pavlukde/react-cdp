@@ -1,57 +1,37 @@
 import React,  { Component } from 'react';
 import { Form, FormControl, FormGroup, Col, ControlLabel } from 'react-bootstrap';
 import { Auth } from '../services/Auth';
+import { connect } from 'react-redux'
+import { login } from '../actions'
 
-export class Login extends Component {
+ const Login = ({ dispatch, state = {} }) => {
 
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            userName:'',
-            password:''
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.signIn = this.signIn.bind(this);
-    }
+  
 
-    handleChange(event) {
+    function handleChange(event) {
         const name = event.target.name;
         const value = event.target.value;
-        this.setState({
+        state = {
           [name]: value
-        });
+        };
       }
 
-    signIn(event){
-        if(!Auth.authenticate(this.state.userName, this.state.password)){
-            console.log('Login Attempt Failed');
-            this.setState({
-                userName:'',
-                password:'',
-                loginAttemptFailed : true
-            });
-            event.preventDefault();
-            return;
-        }
-        this.setState({
-            userName:'',
-            password:''
-        });
-        
+    function signIn(event){
+
         event.preventDefault();
-        this.props.history.push("/courses");
-      }
+        console.log(state.userName);
+        dispatch(login(state.userName));
+    }
 
-    render() {
         return(
-            <Form horizontal onSubmit={this.signIn}>
+            <Form horizontal onSubmit={signIn}>
             <FormGroup controlId="formHorizontalUsername">
                 <Col componentClass={ControlLabel} sm={4}>
                 Username
                 </Col>
                 <Col sm={4}>
                 <FormControl type="text" placeholder="Enter Username"
-                    name="userName" value={this.state.userName} onChange={this.handleChange}/>
+                    name="userName" onChange={handleChange}/>
                 </Col>
             </FormGroup>
 
@@ -61,7 +41,7 @@ export class Login extends Component {
                 </Col>
                 <Col sm={4}>
                 <FormControl type="password" placeholder="Password"
-                    name="password" value={this.state.password} onChange={this.handleChange}/>
+                    name="password" />
                 </Col>
             </FormGroup>
 
@@ -74,4 +54,6 @@ export class Login extends Component {
         );
     }
 
-}
+
+      
+      export default connect()(Login)

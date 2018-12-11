@@ -43,9 +43,9 @@ export class Courses extends Component {
 
 
         {
-            this.state.courses.map((item, key) => {
-                return <CourseListItem course={item}/>
-            })
+         //   this.state.courses.map((item, key) => {
+           //     return <CourseListItem course={item}/>
+            //})
         }
 
       </div>

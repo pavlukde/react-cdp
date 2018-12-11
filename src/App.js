@@ -3,13 +3,14 @@ import './App.css';
 
 import {Footer} from './components/Footer';
 import {Header} from './components/Header';
-import {Login} from './components/Login';
+import Login from './components/Login';
 import {Courses} from './components/Courses';
 import {AddCourse} from './components/AddCourse';
 import {Auth} from './services/Auth';
+import history from './history';
 
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Redirect,
   Switch
@@ -36,11 +37,11 @@ export class App extends Component {
         <Header />
         <br/>
 
-        <Router>
+        <Router history={history}>
           <Switch>
             <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/courses" component={Courses} />
+            <Route path="/courses" component={Courses} />
             <Route path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>

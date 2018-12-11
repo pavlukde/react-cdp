@@ -1,27 +1,20 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Auth } from '../services/Auth';
-import createHistory from 'history/createBrowserHistory'
+import { connect } from 'react-redux'
+import { login } from '../actions'
 
+const Logout = ({ auth }) => (
 
+  auth.isAuthenticated ?
+    <div>       
+        <div>Hello, {auth.userName}</div>
+        <Button>Sign Out</Button>       
+    </div> : <div></div>
+);
 
-export class Logout extends Component {
-
-  signOut(){
-    Auth.signout();
-    createHistory().push("/login");
-  }
-
-  render() {
-    if(Auth.isAuthenticated){
-    return(
-      <div>       
-          <div>Hello, {Auth.userName}</div>
-          <Button onClick={this.signOut}>Sign Out</Button>       
-      </div>
-    )}
-    else return(
-      <div></div>
-    )
-  }
+function mapStateToProps(state) {
+  console.log(state.auth);
+  return { auth: state.auth };
 }
+
+export default connect(mapStateToProps)(Logout)
