@@ -1,17 +1,22 @@
-export const login = (state = [], action) => {
+export const login_logout = (state = [], action) => {
 
   switch (action.type) {
     case 'LOGIN':{
-        console.log("LOGIN reducer");
-        console.log(action.userName);
       return {
         ...state,
         userName:action.userName,
         isAuthenticated:true
       }
-      
     }
     
+    case 'LOGOUT':{
+      return {
+        ...state,
+        userName:null,
+        isAuthenticated:false
+      }
+    }
+
     default:{
         return state
     }

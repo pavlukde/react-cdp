@@ -6,8 +6,8 @@ import {Header} from './components/Header';
 import Login from './components/Login';
 import {Courses} from './components/Courses';
 import {AddCourse} from './components/AddCourse';
-import {Auth} from './services/Auth';
 import history from './history';
+import PrivateRoute from './containers/PrivateRoute';
 
 import {
   Router,
@@ -18,15 +18,6 @@ import {
 
 
 export class App extends Component {
-
-
-  constructor(props) {
-    super(props);
-    this.state = {auth: Auth};
-    this.state.auth.updateState = ()=>{
-      this.setState({auth: Auth});
-    }
-}
 
 
   render() {
@@ -41,7 +32,7 @@ export class App extends Component {
           <Switch>
             <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
             <Route path="/login" component={Login} />
-            <Route path="/courses" component={Courses} />
+            <PrivateRoute path="/courses" component={Courses} />
             <Route path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>
@@ -54,15 +45,6 @@ export class App extends Component {
   
 }
 
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    Auth.isAuthenticated
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
 
 function NoMatch({ location }) {
   return (

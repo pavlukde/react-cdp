@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Logout from './Logout';
+import Logout from '../containers/Logout';
 
 export class Header extends Component {
 

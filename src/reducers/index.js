@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import {login} from './login'
+import {login_logout} from './login_logout'
 
 export const app_reducers = combineReducers({
-  auth:login
+  auth:login_logout
 })

@@ -1,12 +1,9 @@
-import React,  { Component } from 'react';
+import React from 'react';
 import { Form, FormControl, FormGroup, Col, ControlLabel } from 'react-bootstrap';
-import { Auth } from '../services/Auth';
-import { connect } from 'react-redux'
-import { login } from '../actions'
+import { connect } from 'react-redux';
+import { login } from '../actions';
 
  const Login = ({ dispatch, state = {} }) => {
-
-  
 
     function handleChange(event) {
         const name = event.target.name;
@@ -14,12 +11,10 @@ import { login } from '../actions'
         state = {
           [name]: value
         };
-      }
+    }
 
     function signIn(event){
-
         event.preventDefault();
-        console.log(state.userName);
         dispatch(login(state.userName));
     }
 
