@@ -3,13 +3,14 @@ import './App.css';
 
 import {Footer} from './components/Footer';
 import {Header} from './components/Header';
-import {Login} from './components/Login';
-import {Courses} from './components/Courses';
-import {AddCourse} from './components/AddCourse';
-import {Auth} from './services/Auth';
+import Login from './components/Login';
+import Courses from './containers/Courses';
+import AddCourse from './containers/AddCourse';
+import history from './history';
+import PrivateRoute from './containers/PrivateRoute';
 
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Redirect,
   Switch
@@ -17,15 +18,6 @@ import {
 
 
 export class App extends Component {
-
-
-  constructor(props) {
-    super(props);
-    this.state = {auth: Auth};
-    this.state.auth.updateState = ()=>{
-      this.setState({auth: Auth});
-    }
-}
 
 
   render() {
@@ -36,12 +28,12 @@ export class App extends Component {
         <Header />
         <br/>
 
-        <Router>
+        <Router history={history}>
           <Switch>
             <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/courses" component={Courses} />
-            <Route path="/addCourse" component={AddCourse} />
+            <PrivateRoute path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>
         </Router>
@@ -53,15 +45,6 @@ export class App extends Component {
   
 }
 
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    Auth.isAuthenticated
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
 
 function NoMatch({ location }) {
   return (

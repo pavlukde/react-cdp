@@ -2,6 +2,6 @@ import React from 'react';
 
 export const Footer = () => (
   <footer>
-    <label>Copyright 2018</label>
+    <label>Copyright {new Date().getFullYear()}</label>
   </footer>
 );
