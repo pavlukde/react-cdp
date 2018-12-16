@@ -2,7 +2,6 @@ import history from '../history'
 
 export const login = (userName) => {
     return dispatch => {
-            console.log("Login Action");
             history.push('/courses');
             dispatch( {
                 type: 'LOGIN',
@@ -13,7 +12,6 @@ export const login = (userName) => {
 
 export const logout = () => {
     return dispatch => {
-            console.log("Logout Action");
             history.push('/login');
             dispatch( {
                 type: 'LOGOUT'
@@ -22,28 +20,41 @@ export const logout = () => {
 }
 
 
-export const requestSearch = (keyword) => {
-    return dispatch => {
-            dispatch( {
-                type: 'REQUEST_SEARCH'
-            });
-    }
-}
+export const requestAdd = (payload) => {
 
-export const receiveSearch = (courses) => {
-    return dispatch => {
-            dispatch( {
-                type: 'RECEIVE_SEARCH',
-                courses: courses
-            });
-    }
-}
-
-export function search(keyword) {
+    console.log(payload);
 
     return function(dispatch) {
+      
+        return fetch(`http://localhost:3001/courses/`, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {"Content-Type" : "application/json"}
+          })
+          .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+          )
+          .then(() =>
+            dispatch(requestSearch(""))
+          )
+      }
+}
 
-      dispatch(requestSearch(keyword))
+export const requestDelete = (keyword) => {
+    return dispatch => {
+            dispatch( {
+                type: 'REQUEST_DELETE'
+            });
+    }
+}
+
+
+
+
+export function requestSearch(keyword) {
+
+    return function(dispatch) {
       
       return fetch(`http://localhost:3001/courses?q=${keyword}`)
         .then(
@@ -53,5 +64,15 @@ export function search(keyword) {
         .then(courses =>
           dispatch(receiveSearch(courses))
         )
+    }
+}
+
+export const receiveSearch = (courses) => {
+    return dispatch => {
+            history.push('/courses');
+            dispatch( {
+                type: 'RECEIVE_SEARCH',
+                courses: courses
+            });
     }
 }

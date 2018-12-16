@@ -1,51 +1,28 @@
 import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, Button, Col, ControlLabel } from 'react-bootstrap';
 
-export
-class AddCourse extends Component {
 
-  constructor(props) {
-      super(props);
-      this.state = {};
-      this.handleChange = this.handleChange.bind(this);
-      this.save = this.save.bind(this);
-      this.showCourses = this.showCourses.bind(this);
-  }
+export const AddCourse = ({save, cancel}) => (
 
+      <Form horizontal onSubmit={ (evt) => {
+          evt.preventDefault();
 
-  showCourses(){
-    this.props.history.push("/courses");
-  }
+          let payload = {
+            name: evt.target.name.value,
+            description: evt.target.description.value,
+            date: evt.target.date.value,
+            duration: evt.target.duration.value
+          };
 
-  save(){
-    
-    fetch('http://localhost:3001/courses/', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {"Content-Type" : "application/json"}
-    })
-    .then(response => console.log(response.json()))
-    .catch(error => console.log(error));
-  }
-
-  handleChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [name]: value
-    });
-  }
-
-  render(){
-    return(
-      <Form horizontal>
+          save(payload);}
+        }>
         <FormGroup controlId="name">
           <Col componentClass={ControlLabel} sm={4}>
             Name
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="Enter Course Name" 
-              name="name" value={this.state.name} onChange={this.handleChange}/>
+              name="name"/>
           </Col>
         </FormGroup>
 
@@ -55,7 +32,7 @@ class AddCourse extends Component {
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="Course Description" 
-               name="description" value={this.state.description} onChange={this.handleChange}/>
+               name="description"/>
           </Col>
         </FormGroup>
 
@@ -65,7 +42,7 @@ class AddCourse extends Component {
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="dd.mm.yyyy" 
-               name="date" value={this.state.date} onChange={this.handleChange}/>
+               name="date" />
           </Col>
         </FormGroup>
 
@@ -75,7 +52,7 @@ class AddCourse extends Component {
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="min" 
-               name="duration" value={this.state.duration} onChange={this.handleChange}/>
+               name="duration" />
           </Col>
         </FormGroup>
 
@@ -109,13 +86,11 @@ class AddCourse extends Component {
 
         <FormGroup>
           <Col smOffset={2} sm={4}>
-            <Button onClick={this.save}>Save</Button>
+            <Button type="submit">Save</Button>
           </Col>
           <Col smOffset={2} sm={2}>
-            <Button onClick={this.showCourses}>Cancel</Button>
+            <Button onClick={()=>cancel()}>Cancel</Button>
           </Col>
         </FormGroup>
       </Form>
     )
-  }
-}

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Courses } from '../components/Courses'
-import { search } from '../actions'
+import { requestSearch } from '../actions'
 
 function mapStateToProps(state) {
   console.log(state.courses.data);
@@ -9,7 +9,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   search: (keyword) => {
-    dispatch(search(keyword))
+    dispatch(requestSearch(keyword))
   }
 })
 

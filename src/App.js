@@ -5,7 +5,7 @@ import {Footer} from './components/Footer';
 import {Header} from './components/Header';
 import Login from './components/Login';
 import Courses from './containers/Courses';
-import {AddCourse} from './components/AddCourse';
+import AddCourse from './containers/AddCourse';
 import history from './history';
 import PrivateRoute from './containers/PrivateRoute';
 

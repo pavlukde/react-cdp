@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
 import {CourseListItem} from './CourseListItem';
+import history from '../history';
 
 export const Courses = ({ search, courses }) => (
 
@@ -17,7 +18,7 @@ export const Courses = ({ search, courses }) => (
               <Button  type="submit">Find</Button>
             </Col>
             <Col sm={2}>
-              <Button>Add Course</Button>
+              <Button onClick={()=>history.push('/addCourse')}>Add Course</Button>
             </Col>
           </FormGroup>
         </Form>
