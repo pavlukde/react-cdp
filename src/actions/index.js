@@ -22,8 +22,6 @@ export const logout = () => {
 
 export const requestAdd = (payload) => {
 
-    console.log(payload);
-
     return function(dispatch) {
       
         return fetch(`http://localhost:3001/courses/`, {
@@ -41,12 +39,20 @@ export const requestAdd = (payload) => {
       }
 }
 
-export const requestDelete = (keyword) => {
-    return dispatch => {
-            dispatch( {
-                type: 'REQUEST_DELETE'
-            });
-    }
+export const requestDelete = (id) => {
+    return function(dispatch) {
+      
+        return fetch(`http://localhost:3001/courses/${id}`, {
+            method: 'DELETE'
+          })
+          .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+          )
+          .then(() =>
+            dispatch(requestSearch(""))
+          )
+      }
 }
 
 

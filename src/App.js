@@ -32,8 +32,8 @@ export class App extends Component {
           <Switch>
             <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
             <Route path="/login" component={Login} />
-            <Route path="/courses" component={Courses} />
-            <Route path="/addCourse" component={AddCourse} />
+            <PrivateRoute path="/courses" component={Courses} />
+            <PrivateRoute path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>
         </Router>

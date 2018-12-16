@@ -2,9 +2,18 @@ import React from 'react';
 import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
 import {CourseListItem} from './CourseListItem';
 import history from '../history';
+import lifecycle from 'react-pure-lifecycle';
 
-export const Courses = ({ search, courses }) => (
+const componentDidMount = (props) => {
+  props.search('');
+};
 
+const methods = {
+  componentDidMount
+};
+
+const Courses = ({ search, courses, deleteItem }) => (
+  
       <div>
         <Form horizontal onSubmit={ (evt) => {
                 evt.preventDefault();
@@ -25,9 +34,11 @@ export const Courses = ({ search, courses }) => (
 
         {
             courses ? courses.map((course) => {
-                return <CourseListItem course={course}/>
+                return <CourseListItem key={course.id} course={course} deleteItem={() => deleteItem(course.id)}/>
             }) : <div>No courses found</div>
         }
 
       </div>
     );
+
+    export default lifecycle(methods)(Courses);

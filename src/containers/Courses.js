@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { Courses } from '../components/Courses'
-import { requestSearch } from '../actions'
+import  Courses  from '../components/Courses'
+import { requestSearch, requestDelete } from '../actions'
 
 function mapStateToProps(state) {
   console.log(state.courses.data);
@@ -10,6 +10,9 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   search: (keyword) => {
     dispatch(requestSearch(keyword))
+  },
+  deleteItem: (id) => {
+    dispatch(requestDelete(id))
   }
 })
 

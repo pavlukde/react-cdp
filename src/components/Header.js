@@ -1,13 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Logout from '../containers/Logout';
 
-export class Header extends Component {
+export const Header = () => (
 
-  render(){
-    return(
-      <header>
-        <Logout />   
-      </header>
-    )
-  }
-}
+  <header>
+    <Logout />   
+  </header>
+)

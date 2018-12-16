@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { AddCourse } from '../components/AddCourse'
-import { requestAdd } from '../actions'
-import { requestSearch } from '../actions'
+import { requestAdd, requestSearch } from '../actions'
 
 function mapStateToProps(state) {
   return { course : state.course };
