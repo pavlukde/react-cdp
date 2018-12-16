@@ -4,7 +4,7 @@ import './App.css';
 import {Footer} from './components/Footer';
 import {Header} from './components/Header';
 import Login from './components/Login';
-import {Courses} from './components/Courses';
+import Courses from './containers/Courses';
 import {AddCourse} from './components/AddCourse';
 import history from './history';
 import PrivateRoute from './containers/PrivateRoute';
@@ -32,7 +32,7 @@ export class App extends Component {
           <Switch>
             <Route  exact path="/" render={() => ( <Redirect to="/courses"/> )}/>
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/courses" component={Courses} />
+            <Route path="/courses" component={Courses} />
             <Route path="/addCourse" component={AddCourse} />
             <Route component={NoMatch} />
           </Switch>

@@ -1,55 +1,32 @@
-import React,{Component} from 'react';
+import React from 'react';
 import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
-import { CourseListItem } from './CourseListItem';
-import { CoursesService } from '../services/CoursesService';
+import {CourseListItem} from './CourseListItem';
 
-export class Courses extends Component {
+export const Courses = ({ search, courses }) => (
 
-  constructor(props) {
-      super(props);
-      this.state = {courses:[]};
-  }
-
-  addCourse(){
-    this.props.history.push("/addCourse");
-  }
-
-  componentDidMount() {
-    const setState = this.setState.bind(this);
-    fetch('http://localhost:3001/courses')
-    .then(response => response.json())
-    .then(data => {
-        this.setState({ courses: data });
-    });
-  
-  }
-
-  render() {
-    return(
       <div>
-        <Form horizontal>
+        <Form horizontal onSubmit={ (evt) => {
+                evt.preventDefault();
+                search(evt.target.keyword.value);}
+                }>
           <FormGroup controlId="formHorizontalEmail">
             <Col sm={6}>
-              <FormControl type="text" placeholder="Enter name part or date" />
+              <FormControl type="text" name="keyword" placeholder="Enter name part" />
             </Col>
             <Col sm={2}>
-              <Button>Find</Button>
+              <Button  type="submit">Find</Button>
             </Col>
             <Col sm={2}>
-              <Button onClick={this.addCourse.bind(this)}>Add Course</Button>
+              <Button>Add Course</Button>
             </Col>
           </FormGroup>
         </Form>
 
-
         {
-         //   this.state.courses.map((item, key) => {
-           //     return <CourseListItem course={item}/>
-            //})
+            courses ? courses.map((course) => {
+                return <CourseListItem course={course}/>
+            }) : <div>No courses found</div>
         }
 
       </div>
     );
-  }
-  
-}

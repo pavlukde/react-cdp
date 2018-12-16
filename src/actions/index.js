@@ -20,3 +20,38 @@ export const logout = () => {
             });
     }
 }
+
+
+export const requestSearch = (keyword) => {
+    return dispatch => {
+            dispatch( {
+                type: 'REQUEST_SEARCH'
+            });
+    }
+}
+
+export const receiveSearch = (courses) => {
+    return dispatch => {
+            dispatch( {
+                type: 'RECEIVE_SEARCH',
+                courses: courses
+            });
+    }
+}
+
+export function search(keyword) {
+
+    return function(dispatch) {
+
+      dispatch(requestSearch(keyword))
+      
+      return fetch(`http://localhost:3001/courses?q=${keyword}`)
+        .then(
+          response => response.json(),
+          error => console.log('An error occurred.', error)
+        )
+        .then(courses =>
+          dispatch(receiveSearch(courses))
+        )
+    }
+}

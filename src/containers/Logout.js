@@ -8,7 +8,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
     logout: () => {
-      console.log('dispatch(logout())');
       dispatch(logout())
     }
   })
