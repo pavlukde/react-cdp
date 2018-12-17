@@ -22,7 +22,7 @@ export const AddCourse = ({save, cancel}) => (
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="Enter Course Name" 
-              name="name"/>
+              name="name" required/>
           </Col>
         </FormGroup>
 
@@ -32,7 +32,7 @@ export const AddCourse = ({save, cancel}) => (
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="Course Description" 
-               name="description"/>
+               name="description" required/>
           </Col>
         </FormGroup>
 
@@ -42,7 +42,7 @@ export const AddCourse = ({save, cancel}) => (
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="dd.mm.yyyy" 
-               name="date" />
+               name="date" required/>
           </Col>
         </FormGroup>
 
@@ -52,7 +52,7 @@ export const AddCourse = ({save, cancel}) => (
           </Col>
           <Col sm={4}>
             <FormControl type="text" placeholder="min" 
-               name="duration" />
+               name="duration" required/>
           </Col>
         </FormGroup>
 

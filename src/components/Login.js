@@ -26,7 +26,7 @@ import { login } from '../actions';
                 </Col>
                 <Col sm={4}>
                 <FormControl type="text" placeholder="Enter Username"
-                    name="userName" onChange={handleChange}/>
+                    name="userName" onChange={handleChange} required/>
                 </Col>
             </FormGroup>
 
@@ -36,7 +36,7 @@ import { login } from '../actions';
                 </Col>
                 <Col sm={4}>
                 <FormControl type="password" placeholder="Password"
-                    name="password" />
+                    name="password" required/>
                 </Col>
             </FormGroup>
 
