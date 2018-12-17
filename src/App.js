@@ -4,8 +4,6 @@ import './App.css';
 import {Footer} from './components/Footer';
 import {Header} from './components/Header';
 import Login from './components/Login';
-import Courses from './containers/Courses';
-import AddCourse from './containers/AddCourse';
 import history from './history';
 import PrivateRoute from './containers/PrivateRoute';
 
@@ -16,9 +14,22 @@ import {
   Switch
 } from 'react-router-dom'
 
+import Loadable from 'react-loadable';
+import Spinner from 'react-spinkit';
+
+const Loading = () => <Spinner name="double-bounce" />;
+
+const Courses = Loadable({
+  loader: () => import('./containers/Courses'),
+  loading: Loading
+});
+
+const AddCourse = Loadable({
+  loader: () => import('./containers/AddCourse'),
+  loading: Loading
+});
 
 export class App extends Component {
-
 
   render() {
 

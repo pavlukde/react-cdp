@@ -20,6 +20,69 @@
       "duration": "1h 01 min",
       "date": "01.04.2018",
       "description": "Some description"
+    },
+    {
+      "id": "4",
+      "name": "Video Course 4",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "5",
+      "name": "Video Course 5",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "6",
+      "name": "Video Course 6",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "7",
+      "name": "Video Course 7",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "8",
+      "name": "Video Course 8",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "9",
+      "name": "Video Course 9",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "10",
+      "name": "Video Course 10",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "11",
+      "name": "Video Course 11",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
+    },
+    {
+      "id": "12",
+      "name": "Video Course 12",
+      "duration": "1h 01 min",
+      "date": "01.04.2018",
+      "description": "Some description"
     }
   ]
 }

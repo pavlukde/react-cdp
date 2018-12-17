@@ -3,6 +3,8 @@ import { Form, FormControl, FormGroup, Button, Col} from 'react-bootstrap';
 import {CourseListItem} from './CourseListItem';
 import history from '../history';
 import lifecycle from 'react-pure-lifecycle';
+import VirtualList from 'react-tiny-virtual-list';
+
 
 const componentDidMount = (props) => {
   props.search('');
@@ -33,11 +35,22 @@ const Courses = ({ search, courses, deleteItem }) => (
         </Form>
 
         {
-            courses ? courses.map((course) => {
-                return <CourseListItem key={course.id} course={course} deleteItem={() => deleteItem(course.id)}/>
-            }) : <div>No courses found</div>
+          courses ?
+          <VirtualList
+            width={800}
+            height={350}
+            overscanCount={3}
+            itemCount={courses.length}
+            itemSize={130}
+            style={{'overflowX': 'hidden'}}
+            renderItem={({ index, style }) =>{
+              let course = courses[index];
+              return (
+                <CourseListItem style={style} key={course.id} course={course} deleteItem={() => deleteItem(course.id)}/>
+              )}
+            }
+          /> : <div>No courses found</div>
         }
-
       </div>
     );
 
