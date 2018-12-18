@@ -12,7 +12,7 @@ export const login_logout = (state = [], action) => {
     case 'LOGOUT':{
       return {
         ...state,
-        userName:null,
+        userName:undefined,
         isAuthenticated:false
       }
     }
