@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import * as actions from './'
 import fetchMock from 'fetch-mock'
 
+var assert = require('assert');
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
@@ -26,6 +27,7 @@ describe('async actions', () => {
     return store.dispatch(actions.requestSearch('')).then(() => {
       // return of async actions
       expect(store.getActions()).toEqual(expectedActions)
+      assert(fetchMock.called('http://localhost:3001/courses?q='))
     })
   })
 
@@ -49,6 +51,9 @@ describe('async actions', () => {
     return store.dispatch(actions.requestAdd({})).then(() => {
       // return of async actions
       expect(store.getActions()).toEqual(expectedActions)
+      assert(fetchMock.called('http://localhost:3001/courses/'))
+      assert(fetchMock.called('http://localhost:3001/courses?q='))
+
     })
   })
 })
