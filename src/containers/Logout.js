@@ -2,9 +2,9 @@ import { connect } from 'react-redux'
 import { Logout } from '../components/Logout'
 import { logout } from '../actions'
 
-function mapStateToProps(state) {
-  return { auth: state.auth };
-}
+const mapStateToProps = state => ({
+  auth: state.auth
+})
 
 const mapDispatchToProps = dispatch => ({
     logout: () => {

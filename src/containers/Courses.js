@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import  Courses  from '../components/Courses'
 import { requestSearch, requestDelete } from '../actions'
+import { coursesSelector } from '../selectors/coursesSelector'
 
-function mapStateToProps(state) {
-  console.log(state.courses.data);
-  return { courses : state.courses.data };
-}
+const mapStateToProps = state => ({
+  courses : coursesSelector(state)
+})
 
 const mapDispatchToProps = dispatch => ({
   search: (keyword) => {

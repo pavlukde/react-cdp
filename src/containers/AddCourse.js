@@ -2,9 +2,9 @@ import { connect } from 'react-redux'
 import { AddCourse } from '../components/AddCourse'
 import { requestAdd, requestSearch } from '../actions'
 
-function mapStateToProps(state) {
-  return { course : state.course };
-}
+const mapStateToProps = state => ({
+  course : state.course
+})
 
 const mapDispatchToProps = dispatch => ({
   save: (payload) => {
